@@ -1,0 +1,31 @@
+.menu-item {
+  position: relative;
+}
+
+.menu-item a:visited,
+.menu-item a:link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  color: #101828;
+  text-decoration: none;
+}
+
+.menu-item::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 3px;
+  background: #2b5dff;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -10px;
+  border-radius: 3px;
+}
+
+.menu-item:hover::after {
+  width: calc(100% - 20px);
+  transition: width 0.3s;
+}
