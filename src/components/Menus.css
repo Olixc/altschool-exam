@@ -1,5 +1,6 @@
 .menu-item {
   position: relative;
+  margin-top: 20px;
 }
 
 .menu-item a:visited,
@@ -21,7 +22,7 @@
   background: #2b5dff;
   transition: width 0.3s;
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   border-radius: 3px;
 }
 

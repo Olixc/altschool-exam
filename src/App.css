@@ -4,6 +4,10 @@
   padding: 2rem;
 }
 
+.App {
+  color: var(--text-color);
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
