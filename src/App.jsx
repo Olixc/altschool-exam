@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import useLocalStorage from "use-local-storage";
+import { Context } from "./context";
 
 const App = () => {
-  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useLocalStorage(
-    "theme",
-    defaultDark ? "dark" : "light"
-  );
+  const { theme, setTheme } = useContext(Context);
+  console.log(theme);
+
   return (
     <div className="App" data-theme={theme}>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about-us" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );

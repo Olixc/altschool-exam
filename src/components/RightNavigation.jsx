@@ -7,12 +7,13 @@ const Ul = styled.ul`
   display: flex;
   flex-flow: row nowrap;
   margin-top: -3px;
+  z-index: 300;
   li {
     padding: 18px 10px;
   }
   @media (max-width: 942px) {
     flex-flow: column nowrap;
-    background-color: #fff;
+    background-color: var(--bg-color-v2);
     position: fixed;
     top: 0;
     right: 0;

@@ -9,10 +9,10 @@ const BurgerStyling = styled.div`
   width: 2rem;
   height: 2rem;
   position: fixed;
-  top: 70px;
+  top: 40px;
   right: 55px;
   display: none;
-  z-index: 20;
+  z-index: 1000;
   cursor: pointer;
   @media (max-width: 942px) {
     display: flex;
@@ -22,7 +22,8 @@ const BurgerStyling = styled.div`
   div {
     width: 2rem;
     height: 0.25rem;
-    background-color: ${({ open }) => (open ? "#ccc" : "#333")};
+    background-color: ${({ open }) =>
+      open ? "var(--grey-dark)" : "var(--headings-color)"};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;

@@ -9,7 +9,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  color: #101828;
+  color: var(--headings-color);
   text-decoration: none;
 }
 
@@ -19,7 +19,7 @@
   position: absolute;
   width: 0px;
   height: 3px;
-  background: #2b5dff;
+  background: var(--asset-color-blue);
   transition: width 0.3s;
   position: absolute;
   bottom: -20px;

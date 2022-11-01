@@ -10,6 +10,8 @@ const SidebarDiv = styled.section`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  padding-left: 40px;
+  padding-right: 55px;
 `;
 
 const Home = () => {

@@ -4,7 +4,7 @@ import "./Menus.css";
 
 const Menus = ({ menu, to, end }) => {
   let activeStyle = {
-    color: "#2B5DFF",
+    color: "var(--asset-color-blue)",
   };
 
   return (
