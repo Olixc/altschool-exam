@@ -4,10 +4,20 @@ import themeIcon from "../assets/ri-exchange-line.svg";
 import logo from "../assets/link-up-footer.svg";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "./ToggleSwitch";
-import { Context } from "../context";
+import { Context } from "../context/context";
+import { UserAuth } from "../context/context";
 
 const Sidebar = () => {
   const { theme, setTheme } = useContext(Context);
+  const { user, logout } = UserAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SidebarDiv>
       <div className="top">
@@ -22,15 +32,16 @@ const Sidebar = () => {
 
         <div id="profile-container">
           <div className="profile-img">
-            <img
-              src="https://images.unsplash.com/photo-1667132713689-dfe53c325445?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-              alt="profile"
-            />
+            <img src={user?.photoURL} />
           </div>
           <div className="profile-name">
-            <h1>John Doe</h1>
-            <span>johndoe@gmail.com</span>
+            <h1>{user.displayName}</h1>
+            <span>{user.email}</span>
           </div>
+        </div>
+
+        <div className="logout">
+          <button onClick={handleSignOut}>Logout</button>
         </div>
       </div>
 
@@ -95,6 +106,42 @@ const SidebarDiv = styled.section`
         font-weight: 400;
         cursor: pointer;
         color: var(--desc);
+      }
+    }
+  }
+
+  .logout {
+    margin-top: 20px;
+    background-color: var(--bg-color-v2);
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05),
+      0px 40px 34px -16px rgba(0, 0, 0, 0.08),
+      0px 6px 4px -4px rgba(0, 0, 0, 0.06),
+      0px 16px 16px -8px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-size: 1rem;
+      font-weight: 400;
+      cursor: pointer;
+      color: var(--desc);
+      padding: 25px 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      &:hover {
+        background-color: var(--bg-color-v2);
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05),
+          0px 40px 34px -16px rgba(0, 0, 0, 0.08),
+          0px 6px 4px -4px rgba(0, 0, 0, 0.06),
+          0px 16px 16px -8px rgba(0, 0, 0, 0.12);
       }
     }
   }
