@@ -78,4 +78,8 @@ const CardListStyle = styled.div`
       filter: brightness(0.95);
     }
   }
+
+  @media screen and (max-width: 928px) {
+    // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 `;

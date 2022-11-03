@@ -103,21 +103,21 @@ export default function UserDetail() {
           <table className="user-detail-info-table">
             <tbody>
               <tr>
-                <td>Age</td>
-                <td>{age}</td>
+                <td>Age:</td>
+                <td>{age} years</td>
                 <td>
                   <img src={copy} alt="copy-icon" />
                 </td>
               </tr>
               <tr>
-                <td>Phone</td>
+                <td>Phone:</td>
                 <td>{phone}</td>
                 <td>
                   <img src={copy} alt="copy-icon" />
                 </td>
               </tr>
               <tr>
-                <td>Timezone</td>
+                <td>Timezone:</td>
                 <td>{timezone.offset}</td>
                 <td>
                   <img src={copy} alt="copy-icon" />
@@ -125,7 +125,7 @@ export default function UserDetail() {
               </tr>
               {/* add dob */}
               <tr>
-                <td>DOB</td>
+                <td>DOB:</td>
                 <td>{users.dob.date.slice(0, 10)}</td>
                 <td>
                   <img src={copy} alt="copy-icon" />
@@ -133,7 +133,7 @@ export default function UserDetail() {
               </tr>
               {/* Add Mobile */}
               <tr>
-                <td>Tel</td>
+                <td>Tel:</td>
                 <td>{users.cell}</td>
                 <td>
                   <img src={copy} alt="copy-icon" />

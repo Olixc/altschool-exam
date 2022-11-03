@@ -83,4 +83,11 @@ const StyledDashboard = Styled.section`
       }
     }
   }
+
+  @media screen and (max-width: 928px) {
+    // width: 100%; 
+    width: 86vw;
+    margin-left: 0;
+    margin-right: 20px !important; 
+  }
 `;

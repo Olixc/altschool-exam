@@ -205,8 +205,12 @@ const SidebarDiv = styled.section`
   }
 
   @media (max-width: 928px) {
-    flex-direction: column;
-    padding-left: 0;
-    padding-right: 0;
+    position: relative;
+    // flex-direction: column;
+    // background-color: pink;
+    flex: 1;
+    display: block;
+    width: 100%;
+    top: 0;
   }
 `;
