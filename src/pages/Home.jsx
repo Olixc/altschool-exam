@@ -12,6 +12,12 @@ const SidebarDiv = styled.section`
   align-items: flex-start;
   padding-left: 40px;
   padding-right: 55px;
+
+  @media (max-width: 928px) {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
 `;
 
 const Home = () => {

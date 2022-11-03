@@ -60,9 +60,13 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SidebarDiv = styled.section`
+  position: sticky;
+  height: fit-content;
+  top: 80px;
+  z-index: 1;
   display: flex;
   flex: 0.3;
-  background-color: transparent;
+  // background-color: transparent;
   height: 82vh;
   flex-direction: column;
   justify-content: space-between;
@@ -198,5 +202,11 @@ const SidebarDiv = styled.section`
         color: var(--headings-color);
       }
     }
+  }
+
+  @media (max-width: 928px) {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
   }
 `;

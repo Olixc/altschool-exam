@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/link-up.svg";
 import google from "../assets/google.svg";
 import styled from "styled-components";
@@ -92,6 +92,11 @@ const StyledSignIn = styled.section`
 
       &:focus {
         border: 1px solid var(--primary);
+        // target the caret
+        &::selection {
+          background-color: var(--asset-color-blue);
+          color: var(--bg-color);
+        }
 
         &::placeholder {
           color: var(--primary);

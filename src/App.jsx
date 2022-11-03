@@ -1,12 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "./components/Header";
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { Context } from "./context/context";
 import SignIn from "./pages/SignIn";
 import { UserAuth } from "./context/context";
 import Protected from "./components/Protected";
+import UserDetail from "./pages/UserDetail";
+import ErrorBoundary from "./components/ErrorBoundary";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   const { theme, setTheme } = useContext(Context);
@@ -31,7 +34,9 @@ const App = () => {
               path="/privacy"
               element={
                 <Protected>
-                  <Privacy />
+                  <Privacy>
+                    <meta name="description" content="Privacy policy" />
+                  </Privacy>
                 </Protected>
               }
             />
@@ -39,12 +44,24 @@ const App = () => {
               path="/about-us"
               element={
                 <Protected>
-                  <About />
+                  <About>
+                    <meta name="description" content="This is the about page" />
+                  </About>
                 </Protected>
               }
             />
-            <Route path="*" element={<Navigate to="/" />} />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
+            {/* create a route for 404 page */}
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route
+              path="/:userId"
+              element={
+                <ErrorBoundary>
+                  <UserDetail />
+                </ErrorBoundary>
+              }
+            />
           </Routes>
         </>
       )}
@@ -56,9 +73,98 @@ const App = () => {
 export default App;
 
 const Privacy = () => {
-  return <div>Privacy</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "90vh",
+        flexDirection: "column",
+      }}
+    >
+      <ErrorBoundary>
+        <BuggyCounter text="Test Error Boundary" />
+      </ErrorBoundary>
+    </div>
+  );
 };
 
 const About = () => {
-  return <div>About</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "90vh",
+        flexDirection: "column",
+        padidng: "20px",
+      }}
+    >
+      <h1>About Page</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam</p>
+      <button
+        style={{
+          padding: "1rem 2rem",
+          fontSize: "1.5rem",
+          fontWeight: "bold",
+          color: "white",
+          backgroundColor: "var(--asset-color-blue)",
+          border: "none",
+          borderRadius: "5px",
+          outline: "none",
+          cursor: "pointer",
+        }}
+      >
+        <Link
+          style={{
+            color: "white",
+            textDecoration: "none",
+          }}
+          to="/"
+        >
+          Go to Home
+        </Link>
+      </button>
+      <pre
+        style={{
+          textAlign: "center",
+        }}
+      >
+        The 404 page route is after the / (homepage) other routes. So, if the{" "}
+        <br />
+        user tries to access a route that doesn't exist, the 404 page will be
+        rendered. e.g. /about-us, /privacy, /signin, /:userId
+      </pre>
+    </div>
+  );
+};
+
+const BuggyCounter = ({ text }) => {
+  const [count, setCount] = useState(0);
+  if (count === 5) {
+    throw new Error("I crashed");
+  }
+  return (
+    <>
+      <h1>{text}</h1>
+      <button
+        style={{
+          padding: "1rem 2rem",
+          fontSize: "1.5rem",
+          fontWeight: "bold",
+          color: "white",
+          backgroundColor: "var(--asset-color-blue)",
+          border: "none",
+          borderRadius: "5px",
+          outline: "none",
+          cursor: "pointer",
+        }}
+        onClick={() => setCount(count + 1)}
+      >
+        Count : {count}
+      </button>
+    </>
+  );
 };

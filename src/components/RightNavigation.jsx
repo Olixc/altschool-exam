@@ -31,7 +31,7 @@ const RightNavigation = ({ open }) => {
     <Ul open={open}>
       <Menus menu="Home" to="/" end="end" />
       <Menus menu="About us" to="/about-us" />
-      <Menus menu="Privacy" to="/privacy" />
+      <Menus menu="Error Test" to="/privacy" />
     </Ul>
   );
 };

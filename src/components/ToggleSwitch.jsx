@@ -92,7 +92,7 @@ const Switchstyle = styled.div`
     width: 24px;
     border-radius: 100%;
     margin: 5px;
-    background: #212939;
+    background: var(--grey-dark);
     position: absolute;
     top: 0;
     bottom: 0;
