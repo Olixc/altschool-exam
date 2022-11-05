@@ -11,17 +11,15 @@ const SidebarDiv = styled.section`
   justify-content: space-between;
   align-items: flex-start;
   padding-left: 40px;
-  padding-right: 55px;
+  padding-right: 42px;
 
   @media (max-width: 928px) {
     flex-direction: column;
-    padding-left: 40px;
-    padding-right: 40px;
-
-    // .theme {
-    //   padding-left: 40px;
-    //   padding-right: 40px;
-    // }
+    // padding-left: 40px;
+    padding-right: theme {
+      // padding-left: 40px;
+      // padding-right: 40px;
+    }
   }
 `;
 

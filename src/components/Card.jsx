@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Card({ gender, name, email, picture }) {
+export default function Card({ gender, name, email, picture, phone }) {
   return (
     <CardStyle>
       <div className="left">
         <img src={picture} alt="user" />
         <h2>
           {name}
-          <span>{email}</span>
+          <span>{phone}</span>
         </h2>
       </div>
       <div className="right">
@@ -77,6 +77,39 @@ const CardStyle = styled.div`
         cursor: pointer;
         transition: all 0.2s ease-in-out;
       }
+    }
+  }
+
+  @media screen and (max-width: 509px) {
+    // flex-direction: column;
+    padding: 16px;
+    align-items: flex-start;
+
+    .left {
+      gap: 10px;
+      img {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    // flex-direction: column;
+    justify-content: space-around;
+    // align-items: flex-end;
+    .right {
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+
+  @media screen and (max-width: 368px) {
+    // flex-direction: column;
+
+    .left {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 `;

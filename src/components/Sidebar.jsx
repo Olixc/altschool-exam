@@ -16,6 +16,7 @@ const Sidebar = () => {
       await logout();
     } catch (error) {
       console.log(error);
+      f;
     }
   };
   return (
@@ -32,7 +33,11 @@ const Sidebar = () => {
 
         <div id="profile-container">
           <div className="profile-img">
-            <img src={user?.photoURL} />
+            {user?.photoURL ? (
+              <img src={user.photoURL} alt="user profile" />
+            ) : (
+              <div>{user?.displayName?.charAt(0)}</div>
+            )}
           </div>
           <div className="profile-name">
             <h1>{user.displayName}</h1>
@@ -212,5 +217,20 @@ const SidebarDiv = styled.section`
     display: block;
     width: 100%;
     top: 0;
+
+    .footer {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    // logout
+    .logout {
+      width: 100%;
+      button {
+        width: 100%;
+        display: block;
+      }
+    }
   }
 `;

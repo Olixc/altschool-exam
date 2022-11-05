@@ -26,7 +26,19 @@ const App = () => {
               path="/"
               element={
                 <Protected>
-                  <Home />
+                  <Home>
+                    // Add seo // Add meta tags // Add og tags
+                    <meta name="description" content="Home Page" />
+                    <meta name="keywords" content="Home, Page" />
+                    <meta name="author" content="Olix" />
+                    <meta name="robots" content="index, follow" />
+                    <meta name="theme-color" content="#000000" />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+                    <meta
+                      name="apple-mobile-web-app-status-bar-style"
+                      content="default"
+                    />
+                  </Home>
                 </Protected>
               }
             />
@@ -36,6 +48,8 @@ const App = () => {
                 <Protected>
                   <Privacy>
                     <meta name="description" content="Privacy policy" />
+                    <meta name="keywords" content="Privacy, Policy" />
+                    {/* Add meta brief description */}
                   </Privacy>
                 </Protected>
               }
@@ -46,6 +60,7 @@ const App = () => {
                 <Protected>
                   <About>
                     <meta name="description" content="This is the about page" />
+                    <meta name="keywords" content="About, Page" />
                   </About>
                 </Protected>
               }
@@ -106,7 +121,7 @@ const About = () => {
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam</p>
       <button
         style={{
-          padding: "1rem 2rem",
+          padding: "1rem 10rem",
           fontSize: "1.5rem",
           fontWeight: "bold",
           color: "white",
@@ -130,12 +145,14 @@ const About = () => {
       <pre
         style={{
           textAlign: "center",
+          padding: "20px",
         }}
       >
-        The 404 page route is after the / (homepage) other routes. So, if the{" "}
-        <br />
-        user tries to access a route that doesn't exist, the 404 page will be
-        rendered. e.g. /about-us, /privacy, /signin, /:userId
+        The 404 page route is after the / <br />
+        (homepage) other routes. So, if the <br />
+        user tries to access a route that doesn't <br />
+        exist, the 404 page will be rendered.
+        <br /> e.g. /about-us, /privacy, /signin, /:userId
       </pre>
     </div>
   );

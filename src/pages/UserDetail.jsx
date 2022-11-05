@@ -78,7 +78,7 @@ export default function UserDetail() {
             <div className="user-detail-info-img-text">
               <h3>
                 {name.first} {name.last}
-                <span>{email}</span>
+                <span>{phone}</span>
               </h3>
             </div>
           </div>
@@ -110,8 +110,8 @@ export default function UserDetail() {
                 </td>
               </tr>
               <tr>
-                <td>Phone:</td>
-                <td>{phone}</td>
+                <td>Email:</td>
+                <td>{email.slice(0, email.indexOf("example.com"))}</td>
                 <td>
                   <img src={copy} alt="copy-icon" />
                 </td>
@@ -167,6 +167,7 @@ export default function UserDetail() {
               borderRadius: "0.5rem",
               backgroundColor: "var(--bg-color-v2)",
             }}
+            className="go-back"
           >
             Go back
           </NavLink>
@@ -186,7 +187,28 @@ const UserStyleDetail = styled.div`
   padding-left: 40px;
   padding-right: 55px;
 
-  .user-detail {
+  @media (max-width: 929px) {
+    flex-direction: column;
+    .footer {
+      display: none;
+    }
+      .user-detail {
+         width: calc(100% - 40px); 
+         background-color: pink;
+      }
+    }
+
+    .go-back {
+      width 100%;
+      text-align: center !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  }
+  
+   .user-detail {
     flex: 0.7;
     margin-left: 20px;
     border-radius: 8px;
@@ -204,10 +226,16 @@ const UserStyleDetail = styled.div`
       width: 100%;
       padding: 0;
 
+      @media (max-width: 525px) {
+        flex-direction: column;
+        align-items: flex-start; 
+      }
+
       div:first-child {
         display: flex;
         align-items: center;
         gap: 5px;
+
       }
 
       h2 {
@@ -296,6 +324,10 @@ const UserStyleDetail = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-top: 40px;
+
+         @media (max-width: 491px) {
+          display: block;
+        }
 
     .user-detail-info-img {
       display: flex;
@@ -401,6 +433,10 @@ const UserStyleDetail = styled.div`
           padding: 20px;
           border-bottom: 1px solid var(--bg-color-v2);
           text-align: left;
+
+          @media (max-width: 607px) {
+            p
+          }
 
           &:last-child {
             border-bottom: none;

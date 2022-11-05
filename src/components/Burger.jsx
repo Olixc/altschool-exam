@@ -10,7 +10,7 @@ const BurgerStyling = styled.div`
   height: 2rem;
   position: fixed;
   top: 40px;
-  right: 55px;
+  right: 40px;
   display: none;
   z-index: 1000;
   cursor: pointer;

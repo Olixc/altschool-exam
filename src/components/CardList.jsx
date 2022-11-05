@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { FetchData } from "../context/context";
 import ErrorBoundary from "./ErrorBoundary";
 import { useEffect, useState } from "react";
+import data from "../data";
+console.log(data);
 
 export default function CardList() {
   const {
@@ -53,6 +55,7 @@ export default function CardList() {
                     email={email}
                     picture={picture.large}
                     name={`${name.first} ${name.last}`}
+                    phone={user.phone}
                   />
                 </ErrorBoundary>
               </Link>
@@ -82,4 +85,9 @@ const CardListStyle = styled.div`
   @media screen and (max-width: 928px) {
     // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+
+  @media screen and (max-width: 643px) {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  } ;
 `;

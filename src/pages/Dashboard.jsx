@@ -85,9 +85,22 @@ const StyledDashboard = Styled.section`
   }
 
   @media screen and (max-width: 928px) {
-    // width: 100%; 
-    width: 86vw;
+    display: flex; 
+    flex-direction: column; 
     margin-left: 0;
-    margin-right: 20px !important; 
+    width: calc(100% - 40px); 
+
+    .dashboard-header {
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 375px){
+    .dashboard-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 `;

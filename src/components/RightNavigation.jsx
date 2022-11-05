@@ -9,7 +9,13 @@ const Ul = styled.ul`
   margin-top: -3px;
   z-index: 300;
   li {
-    padding: 18px 10px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 10px;
+  }
+
+  li:not(:last-child) {
+    padding-right: 10px;
   }
   @media (max-width: 942px) {
     flex-flow: column nowrap;
