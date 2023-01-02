@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import themeIcon from "../assets/ri-exchange-line.svg";
 import logo from "../assets/link-up-footer.svg";
@@ -6,19 +6,30 @@ import { Link } from "react-router-dom";
 import ToggleSwitch from "./ToggleSwitch";
 import { Context } from "../context/context";
 import { UserAuth } from "../context/context";
+import Skeleton from "./Skeleton";
 
 const Sidebar = () => {
   const { theme, setTheme } = useContext(Context);
-  const { user, logout } = UserAuth();
+  const { user, logout, userLoading } = UserAuth();
 
   const handleSignOut = async () => {
     try {
       await logout();
     } catch (error) {
       console.log(error);
-      f;
     }
   };
+
+  // refreshing the page will cause the image to disappear from the sidebar profile image container because the image is not stored in the database
+  useEffect(() => {
+    const img = document.querySelector(".profile-img img");
+    if (img) {
+      img.src = user.photoURL;
+    }
+  }, [user]);
+
+  console.log(userLoading);
+
   return (
     <SidebarDiv>
       <div className="top">
@@ -32,17 +43,30 @@ const Sidebar = () => {
         </div>
 
         <div id="profile-container">
-          <div className="profile-img">
-            {user?.photoURL ? (
-              <img src={user.photoURL} alt="user profile" />
-            ) : (
-              <div>{user?.displayName?.charAt(0)}</div>
-            )}
-          </div>
-          <div className="profile-name">
-            <h1>{user.displayName}</h1>
-            <span>{user.email}</span>
-          </div>
+          {userLoading ? (
+            <Skeleton type="profile" />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className="profile-img">
+                {user?.photoURL ? (
+                  <img src={user.photoURL} alt="user profile" />
+                ) : (
+                  <div>{user?.displayName?.charAt(0)}</div>
+                )}
+              </div>
+              <div className="profile-name">
+                <h1>{user.displayName}</h1>
+                <span>{user.email}</span>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="logout">
@@ -179,6 +203,7 @@ const SidebarDiv = styled.section`
         height: 100%;
         object-fit: cover;
         box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+        text-align: center;
       }
     }
 

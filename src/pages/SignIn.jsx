@@ -33,7 +33,7 @@ const SignIn = () => {
       >
         <img src={logo} alt="link-up logo" />
         <h1>Welcome back</h1>
-        <input type="text" placeholder="Enter image your URL" />
+        {/* <input type="text" placeholder="Enter image your URL" /> */}
         <button type="submit" onClick={handleGoogleSignIn}>
           <img src={google} alt="google-icon" />
           Sign in with Google

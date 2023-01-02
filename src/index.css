@@ -18,6 +18,8 @@
   --asset-color-green: #00c48c;
   --asset-color-red: #ff4d4f;
   --grey-dark: #585858;
+  --skeleton-color: #e1e1e1;
+  --skeleton-color-v2: #d1d1d1;
 }
 
 html,
@@ -30,6 +32,8 @@ html,
   --asset-color-green: #00c48c;
   --asset-color-red: #ff4d4f;
   --grey-dark: #c7c7c7;
+  --skeleton-color: #2c3546;
+  --skeleton-color-v2: #212939;
 }
 /* 
 body {

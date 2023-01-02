@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import { FetchData } from "../context/context";
 import ErrorBoundary from "./ErrorBoundary";
 import { useEffect, useState } from "react";
-import data from "../data";
-console.log(data);
-
+import Skeleton from "./Skeleton";
 export default function CardList() {
   const {
     userInfo: data,
     loading,
-    USER_PER_PAGE,
-    page,
+    displayUsers,
+    // USER_PER_PAGE,
+    // page,
     setLoading,
   } = FetchData();
 
@@ -20,25 +19,15 @@ export default function CardList() {
 
   // const selectedUser = data?.filter((user) => user.id !== 1);
   // get the new users selected from the
-  const newUsers = data?.slice(0, USER_PER_PAGE);
-
-  useEffect(() => {
-    // check if the loading is more than 5 seconds
-    const timer = setTimeout(() => {
-      setLoading(false);
-      setError("Data couldn't be fetched");
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [loading]);
+  // const newUsers = data?.slice(0, USER_PER_PAGE);
 
   return (
     <>
-      {loading && <h1>Loading...</h1>}
+      {loading && <Skeleton type="post" />}
 
       {!loading && (
         <CardListStyle>
-          {newUsers?.map((user) => {
+          {displayUsers?.map((user) => {
             const { gender, name, email, picture, login } = user;
             return (
               <Link

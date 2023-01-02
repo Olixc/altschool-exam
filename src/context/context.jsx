@@ -3,12 +3,10 @@ import useLocalStorage from "use-local-storage";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
-import ErrorBoundary from "../components/ErrorBoundary";
 
 const useErrorHandler = ({ error }) => {
   if (error) {
@@ -37,17 +35,19 @@ export default function ContextProvider({ children }) {
   );
 
   const [user, setUser] = useState({});
+  const [userLoading, setUserLoading] = useState(true);
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
-    // signInWithRedirect(auth, provider);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUserLoading(false);
       setUser(currentUser);
-      console.log("User", currentUser);
+      // save user to local storage
+      localStorage.setItem("user", JSON.stringify(currentUser));
     });
 
     return () => unsubscribe();
@@ -55,21 +55,50 @@ export default function ContextProvider({ children }) {
 
   const logout = () => {
     signOut(auth);
+    setUser({});
   };
+
+  // const [userInfo, setUserInfo] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  // const [page, setPage] = useState(1);
+  // const USERS_PER_PAGE = 6;
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://randomuser.me/api/?page=${page}&results=${USERS_PER_PAGE}`
+  //       );
+  //       const data = await response.json();
+  //       setUserInfo(data.results);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //       // if the error is not handled, it will be thrown to the ErrorBoundary
+  //     }
+  //   };
+  //   fetchUsers();
+  // }, [page]);
 
   const [userInfo, setUserInfo] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
 
-  const [page, setPage] = useState(1);
   const USERS_PER_PAGE = 6;
+  const pageVisited = pageNumber * USERS_PER_PAGE;
+
+  const displayUsers = userInfo.slice(
+    pageVisited,
+    pageVisited + USERS_PER_PAGE
+  );
 
   useEffect(() => {
     setLoading(true);
     const fetchUsers = async () => {
       try {
-        const response = await fetch(
-          `https://randomuser.me/api/?page=${page}&results=${USERS_PER_PAGE}`
-        );
+        const response = await fetch(`https://randomuser.me/api/?results=500`);
         const data = await response.json();
         setUserInfo(data.results);
         setLoading(false);
@@ -79,7 +108,7 @@ export default function ContextProvider({ children }) {
       }
     };
     fetchUsers();
-  }, [page]);
+  }, []);
 
   const value = {
     theme,
@@ -89,10 +118,14 @@ export default function ContextProvider({ children }) {
     logout,
     userInfo,
     loading,
-    setPage,
-    page,
+    userLoading,
+    // setPage,
+    // page,
+    pageNumber,
+    setPageNumber,
     USERS_PER_PAGE,
     setLoading,
+    displayUsers,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
@@ -108,5 +141,9 @@ export const FetchData = () => {
 };
 
 export const PaginationData = () => {
+  return useContext(Context);
+};
+
+export const SkeletonData = () => {
   return useContext(Context);
 };

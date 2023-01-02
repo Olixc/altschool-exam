@@ -14,7 +14,7 @@ import ErrorPage from "./pages/ErrorPage";
 const App = () => {
   const { theme, setTheme } = useContext(Context);
   const { user } = UserAuth();
-  console.log(theme);
+  // console.log(theme);
 
   return (
     <div className="App" data-theme={theme}>
